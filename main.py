@@ -17,11 +17,11 @@ def process_image(image, pattern, reader):
 def main():
     path, pattern, images = os.getenv('EABYKOV_PATH', '/tmp/'), os.getenv('EABYKOV_PATTERN', 'EABYKOV'), []
     if sys.version_info[0] < 3:
-        sys.exit(datetime.now(), 'ERROR [main           ] Need to use Python 3')
+        sys.exit('ERROR [main           ] Need to use Python 3')
     else:
         print(datetime.now(), ' INFO  [main           ] Python version is ', sys.version_info[0], '.', sys.version_info[1], '.', sys.version_info[2], sep="")
     if os.path.isdir(path) == False:
-        sys.exit(datetime.now(), 'ERROR [main           ] The', path, 'not exist or not a directory')
+        sys.exit('ERROR [main           ] The path not exist or not a directory')
     else:
         print(datetime.now(), 'INFO  [main           ] Will search pattern', pattern, 'in the directory', path)
 
@@ -36,7 +36,7 @@ def main():
                 if imageexist == False:
                     images.append(os.path.join(root, name))
     if images == []:
-        sys.exit(datetime.now(), 'ERROR [main           ] Cant find images in the directory', path)
+        sys.exit('ERROR [main           ] Cant find images in the directory')
     else:
         print(datetime.now(), 'INFO  [get_list_images] Found', len(images), 'various images')
 
