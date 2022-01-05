@@ -28,6 +28,7 @@ def main():
     else:
         print(datetime.now(), 'INFO [main] Will search pattern', pattern, 'in the directory', path)
 
+    print(datetime.now(), 'INFO [list_images] Image list generation has started')
     for root, directories, files in os.walk(path):
         for name in files:
             if imghdr.what(os.path.join(root, name)):
@@ -44,8 +45,9 @@ def main():
         print(datetime.now(), 'INFO [list_images] Found', len(images), 'various images')
 
     try:
+        print(datetime.now(), 'INFO [easyocr_readers] Trying to download the Reader for RU and EN')
         reader = easyocr.Reader(["ru", "en"])
-        print(datetime.now(), 'INFO [easyocr_readers] Reader downloaded')
+        print(datetime.now(), 'INFO [easyocr_readers] Reader for RU and EN was downloaded')
     except:
         sys.exit('ERROR [easyocr_readers] Cant get Reader for RU and EN')
 
