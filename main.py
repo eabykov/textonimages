@@ -23,9 +23,8 @@ def main():
             if imghdr.what(root + '/' + name):
                 images.append(os.path.join(root, name))
 
-    len_images = len(images)
     reader = easyocr.Reader(["ru", "en"])
-    print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'INFO [', main.__name__, '] Found images:', len_images)
+    print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'INFO [', main.__name__, '] Found images:', len(images))
 
     for image in images:
         process_image(image,pattern,reader)
