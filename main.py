@@ -1,6 +1,7 @@
 import imghdr
 import easyocr
 import os
+import filecmp
 from datetime import datetime
 from thefuzz import fuzz
 
@@ -19,10 +20,16 @@ def main():
     for root, directories, files in os.walk(path):
         for name in files:
             if imghdr.what(os.path.join(root, name)):
-                images.append(os.path.join(root, name))
+                imageexist = False
+                for image in images:
+                    if filecmp.cmp(image, os.path.join(root, name)):
+                        imageexist = True
+                        break
+                if imageexist == False:
+                    images.append(os.path.join(root, name))
 
     reader = easyocr.Reader(["ru", "en"])
-    print(datetime.now(), 'INFO [', main.__name__, '] Found images:', len(images))
+    print(datetime.now(), 'INFO [', main.__name__, '] Found', len(images), 'various images')
 
     for image in images:
         process_image(image, pattern, reader)
