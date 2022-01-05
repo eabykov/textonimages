@@ -10,12 +10,12 @@ def process_image(image, pattern, reader):
     for line in result:
         similarity = fuzz.token_set_ratio(pattern.lower(), line.lower())
         if similarity >= 90:
-            print(datetime.now(), 'INFO [process_image   ] Found pattern in the image', image, 'similarity', similarity, '%')
+            print(datetime.now(), 'INFO [process_image  ] Found pattern in the image', image, 'similarity', similarity, '%')
             break
 
 def main():
     path, pattern, images = os.getenv('EABYKOV_PATH', '/tmp/'), os.getenv('EABYKOV_PATTERN', 'EABYKOV'), []
-    print(datetime.now(), 'INFO [main            ] Will search pattern', pattern, 'in the directory', path)
+    print(datetime.now(), 'INFO [main           ] Will search pattern', pattern, 'in the directory', path)
 
     for root, directories, files in os.walk(path):
         for name in files:
@@ -27,13 +27,13 @@ def main():
                         break
                 if imageexist == False:
                     images.append(os.path.join(root, name))
-    print(datetime.now(), 'INFO [get_list_images ] Found', len(images), 'various images')
+    print(datetime.now(), 'INFO [get_list_images] Found', len(images), 'various images')
 
     reader = easyocr.Reader(["ru", "en"])
     for image in images:
         process_image(image, pattern, reader)
 
-    print(datetime.now(), 'INFO [main            ] End of processing by github.com/eabykov')
+    print(datetime.now(), 'INFO [main           ] End of processing by github.com/eabykov')
 
 if __name__ == "__main__":
     main()
