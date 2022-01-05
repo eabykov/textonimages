@@ -5,18 +5,18 @@ import easyocr
 from thefuzz import fuzz
 
 def process_image(image,pattern,reader):
-    print(datetime.now(), 'INFO [', process_image.__name__, '] Process image:', image)
+    print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'INFO [', process_image.__name__, '] Process image:', image)
     result = reader.readtext(image, detail=0, paragraph=True)
     for line in result:
         if fuzz.token_set_ratio(pattern.lower(), line.lower()) >= 90:
-            print(datetime.now(), 'INFO [', process_image.__name__, '] Found the Text', pattern, 'in the file', image)
+            print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'INFO [', process_image.__name__, '] Found the Text', pattern, 'in the file', image)
             break
 
 def main():
     path = os.getenv('MDI_PATH', '/tmp/')
-    print(datetime.now(), 'INFO [', main.__name__, '] Directory to check:', path)
+    print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'INFO [', main.__name__, '] Directory to check:', path)
     pattern = os.getenv('MDI_PATTERN', 'MDI')
-    print(datetime.now(), 'INFO [', main.__name__, '] Will search pattern:', pattern)
+    print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'INFO [', main.__name__, '] Will search pattern:', pattern)
     images = []
 
     for root, directories, files in os.walk(path, topdown=False):
@@ -27,7 +27,7 @@ def main():
 
     len_images = len(images)
     reader = easyocr.Reader(["ru", "en"])
-    print(datetime.now(), 'INFO [', main.__name__, '] Found images:', len_images)
+    print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'INFO [', main.__name__, '] Found images:', len_images)
 
     for image in images:
         process_image(image,pattern,reader)
