@@ -15,7 +15,7 @@ def process_image(image, pattern, reader):
                 print(datetime.now(), 'INFO [process_image] Found pattern in the image', image, 'similarity', similarity, '%')
                 break
     except:
-        print(datetime.now(), ' ERROR [process_image] Cant process the image ', image)
+        print(datetime.now(), 'ERROR [process_image] Cant process the image ', image)
 
 def main():
     path, pattern, images = os.getenv('EABYKOV_PATH', '/tmp/'), os.getenv('EABYKOV_PATTERN', 'EABYKOV'), []
