@@ -1,6 +1,7 @@
 # Find text on images
 
 [![CodeQL](https://github.com/eabykov/textonimages/workflows/CodeQL/badge.svg)](https://github.com/eabykov/textonimages/actions?query=workflow%3ACodeQL "Code quality workflow status")
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
 A small python script to find text on images. Uses [EasyOCR](https://github.com/JaidedAI/EasyOCR) and [thefuzz](https://github.com/seatgeek/thefuzz)
 
