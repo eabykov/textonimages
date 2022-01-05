@@ -12,9 +12,10 @@ def process_image(image,pattern,reader):
             break
 
 def main():
-    path = os.getenv('MDI_PATH', '/tmp/')
+    print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'INFO [', main.__name__, '] EABYKOV project 2022')
+    path = os.getenv('EABYKOV_PATH', '/tmp/')
     print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'INFO [', main.__name__, '] Directory to check:', path)
-    pattern = os.getenv('MDI_PATTERN', 'MDI')
+    pattern = os.getenv('EABYKOV_PATTERN', 'EABYKOV')
     print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'INFO [', main.__name__, '] Will search pattern:', pattern)
     images = []
 
