@@ -1,6 +1,7 @@
 import imghdr
 import easyocr
 import os
+import sys
 import filecmp
 from datetime import datetime
 from thefuzz import fuzz
@@ -15,6 +16,7 @@ def process_image(image, pattern, reader):
 
 def main():
     path, pattern, images = os.getenv('EABYKOV_PATH', '/tmp/'), os.getenv('EABYKOV_PATTERN', 'EABYKOV'), []
+    print(datetime.now(), 'INFO [main           ] Python version', sys.version_info)
     print(datetime.now(), 'INFO [main           ] Will search pattern', pattern, 'in the directory', path)
 
     for root, directories, files in os.walk(path):
