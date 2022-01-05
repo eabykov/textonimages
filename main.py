@@ -27,14 +27,13 @@ def main():
                         break
                 if imageexist == False:
                     images.append(os.path.join(root, name))
-
-    reader = easyocr.Reader(["ru", "en"])
     print(datetime.now(), 'INFO [', main.__name__, '] Found', len(images), 'various images')
 
+    reader = easyocr.Reader(["ru", "en"])
     for image in images:
         process_image(image, pattern, reader)
 
-    print(datetime.now(), 'INFO [', main.__name__, '] End of processing by github.com/eabykov 2022')
+    print(datetime.now(), 'INFO [', main.__name__, '] End of processing by github.com/eabykov')
 
 if __name__ == "__main__":
     main()
