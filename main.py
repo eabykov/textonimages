@@ -31,5 +31,7 @@ def main():
     for image in images:
         process_image(image,pattern,reader)
 
+    print(datetime.now(), 'INFO [', main.__name__, '] End of processing')
+
 if __name__ == "__main__":
     main()
