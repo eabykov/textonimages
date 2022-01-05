@@ -1,6 +1,6 @@
 import imghdr
 import easyocr
-from os import getenv, walk, path
+import os
 from datetime import datetime
 from thefuzz import fuzz
 
@@ -13,13 +13,13 @@ def process_image(image, pattern, reader):
             break
 
 def main():
-    path, pattern, images = getenv('EABYKOV_PATH', '/tmp/'), getenv('EABYKOV_PATTERN', 'EABYKOV'), []
+    path, pattern, images = os.getenv('EABYKOV_PATH', '/tmp/'), os.getenv('EABYKOV_PATTERN', 'EABYKOV'), []
     print(datetime.now(), 'INFO [', main.__name__, '] Will search pattern', pattern, 'in the directory', path)
 
-    for root, directories, files in walk(path):
+    for root, directories, files in os.walk(path):
         for name in files:
-            if imghdr.what(path.join(root, name)):
-                images.append(path.join(root, name))
+            if imghdr.what(os.path.join(root, name)):
+                images.append(os.path.join(root, name))
 
     reader = easyocr.Reader(["ru", "en"])
     print(datetime.now(), 'INFO [', main.__name__, '] Found images:', len(images))
