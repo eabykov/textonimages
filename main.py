@@ -16,7 +16,10 @@ def process_image(image, pattern, reader):
 
 def main():
     path, pattern, images = os.getenv('EABYKOV_PATH', '/tmp/'), os.getenv('EABYKOV_PATTERN', 'EABYKOV'), []
-    print(datetime.now(), 'INFO [main           ] Python version', sys.version_info)
+    if sys.version_info[0] < 3:
+        raise Exception(datetime.now(), ' INFO [main           ] Must be using Python 3')
+    else:
+        print(datetime.now(), ' INFO [main           ] Python version is ', sys.version_info[0], '.', sys.version_info[1], '.', sys.version_info[2], sep="")
     print(datetime.now(), 'INFO [main           ] Will search pattern', pattern, 'in the directory', path)
 
     for root, directories, files in os.walk(path):
