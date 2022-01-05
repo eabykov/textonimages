@@ -22,7 +22,7 @@ def main():
 
     for root, directories, files in os.walk(path):
         for name in files:
-            if imghdr.what(root + '/' + name):
+            if imghdr.what(os.path.join(root, name)):
                 images.append(os.path.join(root, name))
 
     reader = easyocr.Reader(["ru", "en"])
