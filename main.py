@@ -37,15 +37,15 @@ def main():
                         break
                 if imageexist == False:
                     images.append(os.path.join(root, name))
-    print(datetime.now(), 'INFO  [get_list_images] Found', len(images), 'various images')
-
-    reader = easyocr.Reader(["ru", "en"])
     if images == []:
         print(datetime.now(), 'ERROR [main           ] We cant find immages in the directory', path)
         sys.exit()
     else:
-        for image in images:
-            process_image(image, pattern, reader)
+        print(datetime.now(), 'INFO  [get_list_images] Found', len(images), 'various images')
+
+    reader = easyocr.Reader(["ru", "en"])
+    for image in images:
+        process_image(image, pattern, reader)
 
     print(datetime.now(), 'INFO  [main           ] End of processing by github.com/eabykov')
 
