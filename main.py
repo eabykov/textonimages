@@ -18,7 +18,7 @@ def main():
     print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'INFO [', main.__name__, '] Will search pattern:', pattern)
     images = []
 
-    for root, directories, files in os.walk(path, topdown=False):
+    for root, directories, files in os.walk(path):
         for name in files:
             if imghdr.what(root + '/' + name):
                 images.append(os.path.join(root, name))
