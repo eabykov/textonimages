@@ -13,11 +13,8 @@ def process_image(image,pattern,reader):
             break
 
 def main():
-    print(datetime.now(), 'INFO [', main.__name__, '] EABYKOV project 2022')
-    path = os.getenv('EABYKOV_PATH', '/tmp/')
-    print(datetime.now(), 'INFO [', main.__name__, '] Directory to check:', path)
-    pattern = os.getenv('EABYKOV_PATTERN', 'EABYKOV')
-    print(datetime.now(), 'INFO [', main.__name__, '] Will search pattern:', pattern)
+    path, pattern = os.getenv('EABYKOV_PATH', '/tmp/'), os.getenv('EABYKOV_PATTERN', 'EABYKOV')
+    print(datetime.now(), 'INFO [', main.__name__, '] Will search pattern:', pattern, 'in the directory', path)
     images = []
 
     for root, directories, files in os.walk(path):
@@ -31,7 +28,7 @@ def main():
     for image in images:
         process_image(image,pattern,reader)
 
-    print(datetime.now(), 'INFO [', main.__name__, '] End of processing')
+    print(datetime.now(), 'INFO [', main.__name__, '] End of processing by github.com/eabykov 2022')
 
 if __name__ == "__main__":
     main()
