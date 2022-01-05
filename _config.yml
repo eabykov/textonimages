@@ -1,0 +1,10 @@
+author: Yevhenii Bykov
+show_downloads: true
+title: Find text on images
+description: A small python script to find text on images. Uses [EasyOCR](https://github.com/JaidedAI/EasyOCR) and [thefuzz](https://github.com/seatgeek/thefuzz)
+google_analytics:
+theme: jekyll-theme-cayman
+plugins:
+  - jekyll-remote-theme
+  - jekyll-paginate
+  - jekyll-sitemap
