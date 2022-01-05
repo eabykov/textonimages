@@ -20,7 +20,7 @@ def process_image(image, pattern, reader):
 def main():
     path, pattern, images = os.getenv('EABYKOV_PATH', '/tmp/'), os.getenv('EABYKOV_PATTERN', 'EABYKOV'), []
     if sys.version_info[0] < 3:
-        sys.exit('ERROR [main] Need to use Python 3')
+        sys.exit('ERROR [main] Need to use Python 3.8')
     else:
         print(datetime.now(), ' INFO [main] Python version is ', sys.version_info[0], '.', sys.version_info[1], '.', sys.version_info[2], sep="")
     if os.path.isdir(path) == False:
