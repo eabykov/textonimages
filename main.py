@@ -5,7 +5,6 @@ import easyocr
 from thefuzz import fuzz
 
 def process_image(image,pattern,reader):
-    print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), 'INFO [', process_image.__name__, '] Process image:', image)
     result = reader.readtext(image, detail=0, paragraph=True)
     for line in result:
         if fuzz.token_set_ratio(pattern.lower(), line.lower()) >= 90:
