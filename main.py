@@ -13,9 +13,8 @@ def process_image(image,pattern,reader):
             break
 
 def main():
-    path, pattern = os.getenv('EABYKOV_PATH', '/tmp/'), os.getenv('EABYKOV_PATTERN', 'EABYKOV')
+    path, pattern, images = os.getenv('EABYKOV_PATH', '/tmp/'), os.getenv('EABYKOV_PATTERN', 'EABYKOV'), []
     print(datetime.now(), 'INFO [', main.__name__, '] Will search pattern', pattern, 'in the directory', path)
-    images = []
 
     for root, directories, files in os.walk(path):
         for name in files:
