@@ -38,7 +38,7 @@ def main():
                 if imageexist == False:
                     images.append(os.path.join(root, name))
     if images == []:
-        print(datetime.now(), 'ERROR [main           ] We cant find immages in the directory', path)
+        print(datetime.now(), 'ERROR [main           ] Cant find images in the directory', path)
         sys.exit()
     else:
         print(datetime.now(), 'INFO  [get_list_images] Found', len(images), 'various images')
