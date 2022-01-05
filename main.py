@@ -20,8 +20,7 @@ def main():
 
     for root, directories, files in os.walk(path, topdown=False):
         for name in files:
-            root_name = root + '/' + name
-            if imghdr.what(root_name):
+            if imghdr.what(root + '/' + name):
                 images.append(os.path.join(root, name))
 
     len_images = len(images)
