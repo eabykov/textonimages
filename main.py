@@ -18,13 +18,10 @@ def process_image(image, pattern, reader):
 
 def main():
     path, pattern, images = os.getenv('EABYKOV_PATH', '/tmp/'), os.getenv('EABYKOV_PATTERN', 'EABYKOV'), []
-    if sys.version_info[0] < 3:
-        sys.exit('ERROR [main] Need to use Python 3.8')
+    if sys.version_info[0] < 3 or os.path.isdir(path) == False:
+        sys.exit('ERROR [main] Need to use Python 3.8 and path must be exist directory')
     else:
-        print(datetime.now(), ' INFO [main] Python version is ', sys.version_info[0], '.', sys.version_info[1], '.', sys.version_info[2], sep="")
-    if os.path.isdir(path) == False:
-        sys.exit('ERROR [main] The path not exist or not a directory')
-    else:
+        print(datetime.now(), 'INFO [main] Python version is', sys.version)
         print(datetime.now(), 'INFO [main] Will search pattern', pattern, 'in the directory', path)
 
     print(datetime.now(), 'INFO [list_images] Image list generation has started')
