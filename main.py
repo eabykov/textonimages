@@ -8,9 +8,11 @@ from thefuzz import fuzz
 
 def process_image(image, pattern, reader):
     try:
-        similarity = fuzz.token_set_ratio(pattern.lower(), " ".join(reader.readtext(image, detail=0, paragraph=True)).lower())
-        if similarity >= 90:
-            print(datetime.now(), 'INFO [process_image] Found pattern in the image', image, 'similarity', similarity, '%')
+        for line in reader.readtext(image, detail=0, paragraph=True):
+            similarity = fuzz.token_set_ratio(pattern.lower(), line.lower())
+            if similarity >= 90:
+                print(datetime.now(), 'INFO [process_image] Found pattern in the image', image, 'similarity', similarity, '%')
+                break
     except:
         print(datetime.now(), 'ERROR [process_image] Cant process the image ', image)
 
