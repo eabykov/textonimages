@@ -43,6 +43,9 @@ def main():
         keras_images = [keras_ocr.tools.read(image) for image in images]
         pipeline = keras_ocr.pipeline.Pipeline()
         prediction_groups = pipeline.recognize(keras_images)
+        print(keras_images)
+        print(prediction_groups)
+        sys.exit()
     except:
         sys.exit('ERROR [easyocr_readers] Cant get Reader for RU and EN')
 
