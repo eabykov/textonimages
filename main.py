@@ -8,7 +8,7 @@ from thefuzz import fuzz
 
 def process_image(image, pattern, reader):
     try:
-        for line in reader.readtext(image, detail=0, paragraph=True):
+        for line in reader.readtext(image, detail=0, paragraph=True, batch_size=2):
             similarity = fuzz.token_set_ratio(pattern.lower(), line.lower())
             if similarity >= 90:
                 print(datetime.now(), 'INFO [process_image] Found pattern in the image', image, 'similarity', similarity, '%')
@@ -21,7 +21,6 @@ def main():
     if sys.version_info[0] < 3 or os.path.isdir(path) == False:
         sys.exit('ERROR [main] Need to use Python 3.8 and path must be exist directory')
     else:
-        print(datetime.now(), 'INFO [main] Python version is', ".".join(map(str, sys.version_info[:3])))
         print(datetime.now(), 'INFO [main] Will search pattern', pattern, 'in the directory', path)
 
     print(datetime.now(), 'INFO [list_images] Image list generation has started')
