@@ -19,7 +19,7 @@ def process_image(image, pattern, reader):
 def main():
     path, pattern, images = os.getenv('EABYKOV_PATH', '/tmp/'), os.getenv('EABYKOV_PATTERN', 'EABYKOV'), []
     if sys.version_info[0] < 3 or os.path.isdir(path) == False:
-        sys.exit('ERROR [main] Need to use Python 3.8 and path must be exist directory')
+        sys.exit('ERROR [main] Please use Python 3 and path must be exist directory')
     else:
         print(datetime.now(), 'INFO [main] Will search pattern', pattern, 'in the directory', path)
 
