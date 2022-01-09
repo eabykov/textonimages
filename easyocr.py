@@ -3,8 +3,8 @@ import sys
 import filecmp
 import imghdr
 from datetime import datetime
-import easyocr
 import thefuzz
+import easyocr
 
 def process_image(image, pattern, reader):
     try:
