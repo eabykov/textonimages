@@ -3,14 +3,14 @@ import sys
 import filecmp
 import imghdr
 from datetime import datetime
-import thefuzz
+from thefuzz import fuzz
 import easyocr
 
 def process_image(image, pattern, reader):
     try:
         print(datetime.now(), 'INFO [process_image] The search for text on the', image, 'has started')
         for line in set(reader.readtext(image, detail=0, paragraph=True)):
-            similarity = thefuzz.fuzz.token_set_ratio(pattern.lower(), line.lower())
+            similarity = fuzz.token_set_ratio(pattern.lower(), line.lower())
             if similarity >= 90:
                 print(datetime.now(), 'INFO [process_image] Found pattern in the image', image, 'similarity', similarity, '%')
                 break
@@ -25,7 +25,6 @@ def main():
     else:
         print(datetime.now(), 'INFO [main] Python version', ".".join(map(str, sys.version_info[:3])))
         print(datetime.now(), 'INFO [main] EasyOCR version', easyocr.__version__)
-        print(datetime.now(), 'INFO [main] TheFuzz', thefuzz.__version__)
         print(datetime.now(), 'INFO [main] Will search pattern', pattern, 'in the directory', path)
 
     print(datetime.now(), 'INFO [list_images] Image list generation has started')
