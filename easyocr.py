@@ -16,7 +16,6 @@ def process_image(image, pattern, reader):
                 print(datetime.now(), 'INFO [process_image] Found pattern in the image', image, 'similarity', similarity, '%')
                 return image
                 break
-        print(datetime.now(), 'INFO [process_image] The search for the pattern in the', image, 'is finished')
     except:
         print(datetime.now(), 'ERROR [process_image] Cant search for the pattern on the image ', image)
 
