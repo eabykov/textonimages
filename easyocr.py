@@ -2,6 +2,7 @@ import os
 import sys
 import filecmp
 import imghdr
+import faulthandler
 from datetime import datetime
 from thefuzz import fuzz
 import easyocr
@@ -13,13 +14,15 @@ def process_image(image, pattern, reader):
             similarity = fuzz.token_set_ratio(pattern.lower(), line.lower())
             if similarity >= 90:
                 print(datetime.now(), 'INFO [process_image] Found pattern in the image', image, 'similarity', similarity, '%')
+                return image
                 break
         print(datetime.now(), 'INFO [process_image] The search for the pattern in the', image, 'is finished')
     except:
         print(datetime.now(), 'ERROR [process_image] Cant search for the pattern on the image ', image)
 
 def main():
-    path, pattern, images = os.getenv('EABYKOV_PATH', '/tmp/'), os.getenv('EABYKOV_PATTERN', 'EABYKOV'), []
+    faulthandler.enable()
+    path, pattern, images, outputImages = os.getenv('EABYKOV_PATH', '/tmp/'), os.getenv('EABYKOV_PATTERN', 'EABYKOV'), [], []
     if sys.version_info[0] < 3 or os.path.isdir(path) == False:
         sys.exit('ERROR [main] Please use Python 3 and path must be exist directory')
     else:
@@ -50,8 +53,12 @@ def main():
         sys.exit('ERROR [easyocr_readers] Cant get Reader for RU and EN')
 
     for image in images:
-        process_image(image, pattern, reader)
-    print(datetime.now(), 'INFO [process_image] End of processing by github.com/eabykov/textonimages')
+        if process_image(image, pattern, reader) == image:
+            outputImages.append(image)
+    if outputImages == []:
+        sys.exit('ERROR [main] Cant find pattern on the images')
+    else:
+        print(datetime.now(), 'INFO [main] Found pattern', pattern, 'on the images', outputImages)
 
 if __name__ == "__main__":
     main()
