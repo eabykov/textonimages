@@ -8,7 +8,7 @@ import easyocr
 
 def process_image(image, pattern, reader):
     try:
-        print(datetime.now(), 'INFO [process_image] The search for text on the', image, 'has started')
+        print(datetime.now(), 'INFO [process_image] The search for pattern on the', image, 'has started')
         for line in set(reader.readtext(image, detail=0, paragraph=True)):
             similarity = fuzz.token_set_ratio(pattern.lower(), line.lower())
             if similarity >= 90:
