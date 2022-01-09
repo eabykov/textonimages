@@ -26,14 +26,13 @@ def main():
     print(datetime.now(), 'INFO [list_images] Image list generation has started')
     for root, directories, files in os.walk(path):
         for name in files:
-            if imghdr.what(os.path.join(root, name)):
-                imageexist = False
-                for image in images:
-                    if filecmp.cmp(image, os.path.join(root, name)):
-                        imageexist = True
-                        break
-                if imageexist == False:
-                    images.append(os.path.join(root, name))
+            imageexist = False
+            for image in images:
+                if filecmp.cmp(image, os.path.join(root, name)):
+                    imageexist = True
+                    break
+            if imghdr.what(os.path.join(root, name)) and imageexist == False:
+                images.append(os.path.join(root, name))
     if images == []:
         sys.exit('ERROR [list_images] Cant find images in the directory')
     else:
