@@ -2,7 +2,6 @@ import imghdr
 import easyocr
 import os
 import sys
-import platform
 import filecmp
 from datetime import datetime
 import thefuzz
@@ -22,7 +21,9 @@ def main():
     if sys.version_info[0] < 3 or os.path.isdir(path) == False:
         sys.exit('ERROR [main] Please use Python 3 and path must be exist directory')
     else:
-        print(datetime.now(), 'INFO [main] Python version', platform.python_version())
+        print(datetime.now(), 'INFO [main] Python version', ".".join(map(str, sys.version_info[:3])))
+        print(datetime.now(), 'INFO [main] EasyOCR version', easyocr.__version__)
+        print(datetime.now(), 'INFO [main] TheFuzz', thefuzz.__version__)
         print(datetime.now(), 'INFO [main] Will search pattern', pattern, 'in the directory', path)
 
     print(datetime.now(), 'INFO [list_images] Image list generation has started')
@@ -41,14 +42,12 @@ def main():
         print(datetime.now(), 'INFO [list_images] Found', len(images), 'various images')
 
     try:
-        print(datetime.now(), 'INFO [easyocr_readers] EasyOCR version', easyocr.__version__)
         print(datetime.now(), 'INFO [easyocr_readers] Trying to download the Reader for RU and EN')
         reader = easyocr.Reader(["ru", "en"])
         print(datetime.now(), 'INFO [easyocr_readers] Reader for RU and EN was downloaded')
     except:
         sys.exit('ERROR [easyocr_readers] Cant get Reader for RU and EN')
 
-    print(datetime.now(), 'INFO [process_image] TheFuzz', thefuzz.__version__)
     for image in images:
         process_image(image, pattern, reader)
 
