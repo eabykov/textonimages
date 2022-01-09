@@ -48,10 +48,10 @@ def main():
     except:
         sys.exit('ERROR [easyocr_readers] Cant get Reader for RU and EN')
 
+    print(datetime.now(), 'INFO [process_image] The search for pattern in pictures has been launched')
     for image in images:
         process_image(image, pattern, reader)
-
-    print(datetime.now(), 'INFO [main] End of processing by github.com/eabykov/textonimages')
+    print(datetime.now(), 'INFO [process_image] End of processing by github.com/eabykov/textonimages')
 
 if __name__ == "__main__":
     main()
