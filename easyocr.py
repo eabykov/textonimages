@@ -1,7 +1,7 @@
-import imghdr
 import os
 import sys
 import filecmp
+import imghdr
 from datetime import datetime
 import easyocr
 import thefuzz
