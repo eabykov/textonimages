@@ -8,13 +8,15 @@ import thefuzz
 
 def process_image(image, pattern, reader):
     try:
+        print(datetime.now(), 'INFO [process_image] The search for text on the', image, 'has started')
         for line in set(reader.readtext(image, detail=0, paragraph=True)):
             similarity = thefuzz.fuzz.token_set_ratio(pattern.lower(), line.lower())
             if similarity >= 90:
                 print(datetime.now(), 'INFO [process_image] Found pattern in the image', image, 'similarity', similarity, '%')
                 break
+        print(datetime.now(), 'INFO [process_image] The search for the text in the', image, 'is finished')
     except:
-        print(datetime.now(), 'ERROR [process_image] Cant process the image ', image)
+        print(datetime.now(), 'ERROR [process_image] Cant search for the text on the image ', image)
 
 def main():
     path, pattern, images = os.getenv('EABYKOV_PATH', '/tmp/'), os.getenv('EABYKOV_PATTERN', 'EABYKOV'), []
