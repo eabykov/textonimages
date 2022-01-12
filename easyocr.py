@@ -43,6 +43,7 @@ def main():
         sys.exit('ERROR [list_images] Cant find images in the directory')
     else:
         print(datetime.now(), 'INFO [list_images] Found', len(images), 'various images')
+        images = set(images)
 
     try:
         print(datetime.now(), 'INFO [easyocr_readers] Trying to download the Reader for RU and EN')
