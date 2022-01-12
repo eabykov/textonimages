@@ -51,9 +51,7 @@ def main():
     except:
         sys.exit('ERROR [easyocr_readers] Cant get Reader for RU and EN')
 
-    for image in images:
-        if process_image(image, pattern, reader) == image:
-            outputImages.append(image)
+    outputImages = [image for image in images if process_image(image, pattern, reader) == image]
     if outputImages == []:
         sys.exit('ERROR [main] Cant find pattern on the images')
     else:
