@@ -7,7 +7,7 @@ from datetime import datetime
 from thefuzz import fuzz
 import easyocr
 
-def process_image(image, pattern, reader):
+def process_image(image, pattern):
     try:
         print(datetime.now(), 'INFO [process_image] The search for pattern on the', image, 'has started')
         for line in set(reader.readtext(image, detail=0, paragraph=True)):
@@ -47,12 +47,13 @@ def main():
 
     try:
         print(datetime.now(), 'INFO [easyocr_readers] Trying to download the Reader for RU and EN')
+        global reader
         reader = easyocr.Reader(["ru", "en"])
         print(datetime.now(), 'INFO [easyocr_readers] Reader for RU and EN was downloaded')
     except:
         sys.exit('ERROR [easyocr_readers] Cant get Reader for RU and EN')
 
-    outputImages = [image for image in images if process_image(image, pattern, reader) == image]
+    outputImages = [image for image in images if process_image(image, pattern) == image]
     if outputImages == []:
         sys.exit('ERROR [main] Cant find pattern on the images')
     else:
