@@ -1,8 +1,6 @@
-FROM bitnami/pytorch:1.10.1
+FROM python:3.8
 
-COPY ./requirements.txt /eabykov/requirements.txt
-COPY ./easyocr.py /eabykov/easyocr.py
-RUN python -m pip install --upgrade pip
-RUN python -mpip install -r /eabykov/requirements.txt
+COPY ./easyocr.py /easyocr.py
+RUN python3.8 -mpip install easyocr==1.4.1 thefuzz[speedup]==0.19.0
 
-CMD ["python", "/eabykov/easyocr.py"]
+CMD ["python", "/easyocr.py"]
