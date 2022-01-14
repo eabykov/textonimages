@@ -21,7 +21,7 @@ def process_image(image, pattern, reader):
 
 def main():
     faulthandler.enable()
-    path, pattern, images, outputImages = os.getenv('EABYKOV_PATH', '/tmp/'), os.getenv('EABYKOV_PATTERN', 'EABYKOV'), [], []
+    path, pattern, images, outputImages = os.getenv('PATH_TO_DIR', '/tmp/'), os.getenv('PATTERN_TO_SEARCH', 'EABYKOV'), [], []
     if sys.version_info[0] < 3 or os.path.isdir(path) == False:
         sys.exit('ERROR [main] Please use Python 3 and path must be exist directory')
     else:
