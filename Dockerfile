@@ -1,4 +1,4 @@
-FROM python:3.8.10
+FROM bitnami/pytorch:1.10.1
 
 COPY ./requirements.txt /eabykov/requirements.txt
 COPY ./easyocr.py /eabykov/easyocr.py
