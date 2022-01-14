@@ -20,9 +20,16 @@ services:
       - /local/folder/with/images:/tmp
 ```
 
-> `PATTERN_TO_SEARCH` - text that we need to find
+- `PATTERN_TO_SEARCH` - text that we need to find
 
-3. Run command `docker compose up -d`
-4. Information about the matches found will be in the log `docker compose logs -f`
+3. Run command
 
-[![Stargazers over time](https://starchart.cc/eabykov/textonimages.svg)](https://starchart.cc/eabykov/textonimages)
+```
+docker compose up -d
+```
+
+5. Information about the matches found will be in the log
+
+```
+docker compose logs -f
+```
