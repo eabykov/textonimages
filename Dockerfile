@@ -1,4 +1,4 @@
-FROM python:3.8-alpine3.15
+FROM python:3.8-slim
 
 COPY ./requirements.txt /eabykov/requirements.txt
 COPY ./easyocr.py /eabykov/easyocr.py
