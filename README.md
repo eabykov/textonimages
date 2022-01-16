@@ -13,7 +13,7 @@ A small python script to find text on images. Uses [EasyOCR](https://github.com/
 ```
 services:
   textonimages:
-    image: ghcr.io/eabykov/textonimages:v1.0.11
+    image: ghcr.io/eabykov/textonimages:latest
     environment:
       PATTERN_TO_SEARCH: ""
     volumes:
