@@ -7,29 +7,9 @@
 
 A small python script to find text on images. Uses [EasyOCR](https://github.com/JaidedAI/EasyOCR) and [thefuzz](https://github.com/seatgeek/thefuzz)
 
-1. Install [Docker](https://docs.docker.com/engine/install/) and [Docker Compose V2](https://docs.docker.com/compose/cli-command/#installing-compose-v2)
-2. Create `docker-compose.yml` file
-
-```
-services:
-  textonimages:
-    image: ghcr.io/eabykov/textonimages:latest
-    environment:
-      PATTERN_TO_SEARCH: ""
-    volumes:
-      - /local/folder/with/images:/tmp
-```
-
+1. Install requirements by command `python3.8 -mpip install -r ./requirements.txt`
+2. Set up global variables
 - `PATTERN_TO_SEARCH` - text that we need to find
+- `PATH_TO_DIR` - directory with images
 
-3. Run command
-
-```
-docker compose up -d
-```
-
-5. Information about the matches found will be in the log
-
-```
-docker compose logs -f
-```
+3. Exec script `python3.8 ./easyocr.py`
