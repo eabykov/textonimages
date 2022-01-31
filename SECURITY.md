@@ -11,4 +11,4 @@
 
 ## Reporting a Vulnerability
 
-To report a vulnerability create an [issue](https://github.com/eabykov/textonimages/issues)
+To report a vulnerability create an [issue](https://github.com/eabykov/textonimages/issues/new)
