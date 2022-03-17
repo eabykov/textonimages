@@ -1,11 +1,12 @@
-import os
-import sys
+import faulthandler
 import filecmp
 import imghdr
-import faulthandler
+import os
+import sys
 from datetime import datetime
-from thefuzz import fuzz
+
 import easyocr
+from thefuzz import fuzz
 
 
 def process_image(image, pattern, reader):
