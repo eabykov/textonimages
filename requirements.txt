@@ -1,2 +1,2 @@
-easyocr==1.4.1
+easyocr==1.4.2
 thefuzz[speedup]==0.19.0
