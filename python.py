@@ -3,7 +3,7 @@ import filecmp
 import imghdr
 import os
 import sys
-from datetime import datetime
+from loguru import logger
 
 import easyocr
 from thefuzz import fuzz
@@ -11,31 +11,17 @@ from thefuzz import fuzz
 
 def process_image(image, pattern, reader):
     try:
-        print(
-            datetime.now(),
-            "INFO [process_image] The search for pattern on the",
-            image,
-            "has started",
-        )
+        logger.info(f"The search for pattern on the {image} has started")
         for line in set(reader.readtext(image, detail=0, paragraph=True)):
             similarity = fuzz.token_set_ratio(pattern.lower(), line.lower())
             if similarity >= 90:
-                print(
-                    datetime.now(),
-                    "INFO [process_image] Found pattern in the image",
-                    image,
-                    "similarity",
-                    similarity,
-                    "%",
+                logger.info(
+                    f"Found pattern in the image {image} similarity {similarity} %"
                 )
                 return image
                 break
     except:
-        print(
-            datetime.now(),
-            "ERROR [process_image] Cant search for the pattern on the image ",
-            image,
-        )
+        logger.error(f"Cant search for the pattern on the image {image}")
 
 
 def main():
@@ -47,23 +33,12 @@ def main():
         [],
     )
     if sys.version_info[0] < 3 or os.path.isdir(path) == False:
-        sys.exit("ERROR [main] Please use Python 3 and path must be exist directory")
+        logger.error(f"Please use Python 3 and path must be exist directory")
+        sys.exit()
     else:
-        print(
-            datetime.now(),
-            "INFO [main] Python version",
-            ".".join(map(str, sys.version_info[:3])),
-        )
-        print(datetime.now(), "INFO [main] EasyOCR version", easyocr.__version__)
-        print(
-            datetime.now(),
-            "INFO [main] Will search pattern",
-            pattern,
-            "in the directory",
-            path,
-        )
+        logger.info(f"Will search pattern {pattern} in the directory {path}")
 
-    print(datetime.now(), "INFO [list_images] Image list generation has started")
+    logger.info("Image list generation has started")
     for root, directories, files in os.walk(path):
         for name in files:
             imageexist = False
@@ -74,34 +49,25 @@ def main():
             if imghdr.what(os.path.join(root, name)) and imageexist == False:
                 images.append(os.path.join(root, name))
     if images == []:
-        sys.exit("ERROR [list_images] Cant find images in the directory")
+        logger.error("Cant find images in the directory")
+        sys.exit()
     else:
-        print(datetime.now(), "INFO [list_images] Found", len(images), "various images")
+        logger.info(f"Found {len(images)} various images")
         images = set(images)
 
     try:
-        print(
-            datetime.now(),
-            "INFO [easyocr_readers] Trying to download the Reader for RU and EN",
-        )
+        logger.info("Trying to download the Reader for RU and EN")
         reader = easyocr.Reader(["ru", "en"])
-        print(
-            datetime.now(), "INFO [easyocr_readers] Reader for RU and EN was downloaded"
-        )
+        logger.info("Reader for RU and EN was downloaded")
     except:
-        sys.exit("ERROR [easyocr_readers] Cant get Reader for RU and EN")
+        logger.error("Cant get Reader for RU and EN")
+        sys.exit()
 
     outputImages = [
         image for image in images if process_image(image, pattern, reader) == image
     ]
     if outputImages != []:
-        print(
-            datetime.now(),
-            "INFO [main] Found pattern",
-            pattern,
-            "on the images",
-            outputImages,
-        )
+        logger.error(f"Found pattern {pattern} on the images {outputImages}")
 
 
 if __name__ == "__main__":
