@@ -32,13 +32,8 @@ def main():
         [],
         [],
     )
-    if sys.version_info[0] < 3 or os.path.isdir(path) == False:
-        logger.error(f"Please use Python 3 and path must be exist directory")
-        sys.exit()
-    else:
-        logger.info(f"Will search pattern {pattern} in the directory {path}")
+    logger.info(f"Will search pattern {pattern} in the directory {path}")
 
-    logger.info("Image list generation has started")
     for root, directories, files in os.walk(path):
         for name in files:
             imageexist = False
@@ -48,7 +43,7 @@ def main():
                     break
             if imghdr.what(os.path.join(root, name)) and imageexist == False:
                 images.append(os.path.join(root, name))
-    if images == []:
+    if len(images) == 0:
         logger.error("Cant find images in the directory")
         sys.exit()
     else:
@@ -66,7 +61,7 @@ def main():
     outputImages = [
         image for image in images if process_image(image, pattern, reader) == image
     ]
-    if outputImages != []:
+    if len(outputImages) != 0:
         logger.error(f"Found pattern {pattern} on the images {outputImages}")
 
 
