@@ -10,4 +10,4 @@ A small python script to find text on images. Uses [EasyOCR](https://github.com/
 - `PATTERN_TO_SEARCH` - text that we need to find
 - `PATH_TO_DIR` - directory with images
 
-3. Exec script `python3 ./python.py`
+3. Exec script `python3 ./app.py`
